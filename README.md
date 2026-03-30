@@ -52,27 +52,19 @@ Uterine Corpus Endometrial Carcinoma (UCEC) tumor grading has direct clinical im
 - Top genes by coefficient magnitude include **PRLH** (prolactin-related, known endometrial cancer role) and **NTSR1/NTS** (neurotensin axis, reported in hormone-sensitive cancers), which partially recapitulates known UCEC biology
 
 ---
-
 ## Repository Structure
 
-\```
-ucec-tumor-grade-classification/
-├── notebooks/
-│   └── ucec_tumor_grade_classification.ipynb
-├── data/
-│   ├── train_X.csv        # not tracked -- see note below
-│   ├── train_y.csv
-│   └── test_X.csv
-├── results/
-│   ├── gene_importance.csv
-│   ├── submission_final.csv
-│   └── patient_visualization.png
-├── requirements.txt
-├── .gitignore
-└── README.md
-\```
+- `notebooks/` - main analysis notebook
+- `data/` - raw feature matrices (not tracked, see note below)
+- `results/`
+  - `gene_importance.csv` - ranked gene coefficients from final model
+  - `submission_final.csv` - final test set predictions
+  - `patient_visualization.png` - PCA and t-SNE plots
+- `requirements.txt`
+- `.gitignore`
+- `README.md`
 
-> **Note on data:** Raw feature matrices are not tracked due to size. They can be obtained from the [TCGA data portal](https://portal.gdc.cancer.gov/) or the original course competition.
+> **Note on data:** Raw feature matrices are not tracked due to size. They can be obtained from the [TCGA data portal](https://portal.gdc.cancer.gov/)
 
 ---
 
