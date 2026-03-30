@@ -47,4 +47,72 @@ Uterine Corpus Endometrial Carcinoma (UCEC) tumor grading has direct clinical im
 
 ## Key Findings
 
-- Logistic Regression consistently outperformed regression-based models on
+- Logistic Regression consistently outperformed regression-based models on F1
+- Y-randomization confirmed the model is picking up real transcriptomic signal, not statistical artifacts
+- Top genes by coefficient magnitude include **PRLH** (prolactin-related, known endometrial cancer role) and **NTSR1/NTS** (neurotensin axis, reported in hormone-sensitive cancers), which partially recapitulates known UCEC biology
+
+---
+
+## Repository Structure
+
+\```
+ucec-tumor-grade-classification/
+├── notebooks/
+│   └── ucec_tumor_grade_classification.ipynb
+├── data/
+│   ├── train_X.csv        # not tracked -- see note below
+│   ├── train_y.csv
+│   └── test_X.csv
+├── results/
+│   ├── gene_importance.csv
+│   ├── submission_final.csv
+│   └── patient_visualization.png
+├── requirements.txt
+├── .gitignore
+└── README.md
+\```
+
+> **Note on data:** Raw feature matrices are not tracked due to size. They can be obtained from the [TCGA data portal](https://portal.gdc.cancer.gov/) or the original course competition.
+
+---
+
+## Visualizations
+
+### PCA and t-SNE of Training Samples by Tumor Grade
+
+![Patient Visualization](results/patient_visualization.png)
+
+Classes overlap considerably in 2D projections, consistent with the high-order nature of tumor grade as a phenotype. The linear classifier finds a useful decision boundary in the full ~18K-dimensional space despite the apparent lack of 2D separation.
+
+---
+
+## Setup and Reproduction
+
+\```bash
+git clone https://github.com/zahinp7/ucec-tumor-grade-classification.git
+cd ucec-tumor-grade-classification
+pip install -r requirements.txt
+\```
+
+Place the three data files in `data/`, then run:
+
+\```bash
+jupyter notebook notebooks/ucec_tumor_grade_classification.ipynb
+\```
+
+---
+
+## Dependencies
+
+See `requirements.txt`. Core stack: `scikit-learn`, `pandas`, `numpy`, `matplotlib`.
+
+---
+
+## Skills
+
+- End-to-end ML pipeline design in scikit-learn
+- Stratified cross-validation and Pipeline-based leakage prevention
+- Feature selection in high-dimensional (n << p) biological data
+- Model interpretability via coefficient analysis
+- Dimensionality reduction (PCA, t-SNE) for exploratory data analysis
+- Biological validation of model outputs against domain literature
