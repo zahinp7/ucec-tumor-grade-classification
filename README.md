@@ -35,14 +35,26 @@ Uterine Corpus Endometrial Carcinoma (UCEC) tumor grading has direct clinical im
 
 | Model | CV Accuracy | CV F1-Score |
 |---|---|---|
-| Logistic Regression | *see notebook* | *see notebook* |
-| Ridge Regression | *see notebook* | *see notebook* |
-| Linear Regression | *see notebook* | *see notebook* |
-| LASSO | *see notebook* | *see notebook* |
+| Logistic Regression | 82.2% | 0.846 |
+| Linear Regression | 81.3% | 0.836 |
+| Ridge Regression | 81.3% | 0.836 |
+| LASSO | 80.4% | 0.828 |
 | Y-randomization baseline | ~chance | ~chance |
 
-> Full numerical results are in the notebook outputs.
+SelectKBest feature selection sweep (Logistic Regression, 5-fold CV):
 
+| k (features kept) | CV F1 |
+|---|---|
+| 100 | 0.772 |
+| 500 | 0.798 |
+| 1,000 | 0.789 |
+| 2,000 | 0.832 |
+| 5,000 | 0.843 |
+| 10,000 | 0.849 |
+
+Best configuration: Logistic Regression with top 10,000 features selected by ANOVA F-test (CV F1 = 0.849). Final model trained on all 444 samples.
+
+PCA explained variance (PC1 + PC2): 37.56% -- consistent with high-dimensional transcriptomic data where no single linear projection captures most of the variance.
 ---
 
 ## Key Findings
